@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+  <Transactions>
+    <Transaction>2026/07/17 11:29:32.188,=C:\Users\kevin\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2026/07/17 11:31:04.938,C:\Users\kevin\OneDrive\Desktop\LYA2 PROYECTOS\PROYECTO HIBRIDO MULTIPLATAFORMA\FORMULARIOS\Forma_Principal.dfm=C:\Users\kevin\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2026/07/17 11:31:04.938,C:\Users\kevin\OneDrive\Desktop\LYA2 PROYECTOS\PROYECTO HIBRIDO MULTIPLATAFORMA\FORMULARIOS\Forma_Principal.pas=C:\Users\kevin\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2026/07/17 11:31:32.505,C:\Users\kevin\OneDrive\Desktop\LYA2 PROYECTOS\PROYECTO HIBRIDO MULTIPLATAFORMA\ProyectoMultiplataforma.dproj=C:\Users\kevin\OneDrive\Documentos\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+  </Transactions>
+</BorlandProject>

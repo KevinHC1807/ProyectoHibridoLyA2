@@ -1,0 +1,104 @@
+unit Forma_LCD;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Imaging.pngimage, Vcl.ExtCtrls,
+  Vcl.StdCtrls,MMSystem,ShellAPI;
+
+type
+  TFormaLCD = class(TForm)
+    Panel1: TPanel;
+    Image1: TImage;
+    Image2: TImage;
+    Panel2: TPanel;
+    Label1: TLabel;
+    Label2: TLabel;
+    editPrograma: TEdit;
+    editTexto: TEdit;
+    MemoASM: TMemo;
+    laHora: TLabel;
+    Button1: TButton;
+    Image3: TImage;
+    Label4: TLabel;
+    Exportar: TButton;
+    procedure Button1Click(Sender: TObject);
+    procedure ExportarClick(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    emu86, enter, APOSTROFE, INICIO, FIN, programa: String;
+    Archivo: TextFile;
+    prog, mensaje: String;
+  end;
+
+var
+  FormaLCD: TFormaLCD;
+
+implementation
+
+{$R *.dfm}
+
+procedure TFormaLCD.Button1Click(Sender: TObject);
+begin
+ close;
+end;
+
+procedure TFormaLCD.ExportarClick(Sender: TObject);
+begin
+  try
+     prog:= 'C:\Users\kevin\Downloads' + editPrograma.Text + '.asm';
+     mensaje:= editTexto.Text;
+      if (length(prog)<>0) and (length(mensaje)<>0) then
+      begin
+        emu86:= '.MODEL SMALL' + ENTER+
+                '.STACK' + ENTER +
+                '.DATA' + ENTER+
+                'CADENA DB ' + APOSTROFE+ENTER+
+                editTexto.Text + APOSTROFE + ENTER +
+                '.CODE' + ENTER + ENTER +
+                INICIO + ENTER + ENTER +
+                'MOV DX,2040H' + ENTER +
+                'MOV SI,0' + ENTER +
+                'MOV AL, CADENA[SI]' + ENTER +
+                'OUT DX,AL' + ENTER + FIN;
+
+                //Creacion de archivo
+                AssignFile(Archivo,prog);
+                Rewrite(Archivo);
+                Write(Archivo,emu86);
+                laHora.Caption:='Hora de envio '+TimeToStr(now);
+                sndPlaySound('C:\Users\kevin\OneDrive\Desktop\LYA2 PROYECTOS\PROYECTO HIBRIDO MULTIPLATAFORMA\SONIDO',
+                        SND_FILENAME or SND_ASYNC);
+                closeFile(Archivo);
+                MemoASM.Lines.LoadFromFile(prog);
+                //
+                ShellExecute(FormaLCD.Handle,nil,pChar(prog),nil,nil,SW_SHOWNORMAL);
+      end;  //IF
+      else
+      begin
+        showMessage('Favor de proporcionar datos');
+      end;  //IF-ELSE
+
+  except
+        showMessage('Error al generar el archivo LCD.asm');
+  end; //fin try
+end;
+
+procedure TFormaLCD.FormActivate(Sender: TObject);
+begin
+  enter:=#13#10;
+  APOSTROFE:='''';
+  INICIO:='MOV AX,@DATA' + ENTER +
+          'MOV DS,AX' + ENTER +
+
+  FIN:= 'MOV AX,4C00H' + ENTER +
+        'INT 21H' + ENTER +
+        'END';
+  Programa:='';
+end;
+
+end.

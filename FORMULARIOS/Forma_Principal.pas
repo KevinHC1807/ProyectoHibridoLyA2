@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls,
-  Vcl.Imaging.pngimage;
+  Vcl.Imaging.pngimage, ShellAPI, Vcl.Buttons;
 
 type
   TFormaPrincipal = class(TForm)
@@ -15,10 +15,17 @@ type
     Image1: TImage;
     Image2: TImage;
     Button2: TButton;
-    Button3: TButton;
-    Button4: TButton;
+    BitBtn1: TBitBtn;
+    BitBtn2: TBitBtn;
+    BitBtn3: TBitBtn;
+    BitBtn4: TBitBtn;
+    BitBtn5: TBitBtn;
     procedure Button2Click(Sender: TObject);
     procedure Button1Click(Sender: TObject);
+    procedure BitBtn1Click(Sender: TObject);
+    procedure BitBtn5Click(Sender: TObject);
+    procedure BitBtn3Click(Sender: TObject);
+    procedure BitBtn4Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -34,6 +41,42 @@ implementation
 {$R *.dfm}
 
 uses Forma_LCD;
+
+procedure TFormaPrincipal.BitBtn1Click(Sender: TObject);
+begin
+  try
+      shellExecute(Handle, nil, pChar('C:\Users\kevin\OneDrive\Desktop\LYA2 PROYECTOS\PROYECTO HIBRIDO MULTIPLATAFORMA\ARBOL EXPRESION JAVA\ArbolExpresiones.jar'), nil, nil, SW_SHOWNORMAL);
+  except
+       showMessage('No se ha encontrado la App');
+  end;
+end;
+
+procedure TFormaPrincipal.BitBtn3Click(Sender: TObject);
+begin
+try
+      shellExecute(Handle, nil, pChar('C:\Users\kevin\OneDrive\Desktop\LYA2 PROYECTOS\PROYECTO HIBRIDO MULTIPLATAFORMA\ARCHIVOS DE TEXTO\codigo_intermedio.txt'), nil, nil, SW_SHOWNORMAL);
+  except
+       showMessage('No se ha encontrado la App');
+  end;
+end;
+
+procedure TFormaPrincipal.BitBtn4Click(Sender: TObject);
+begin
+try
+      shellExecute(Handle, nil, pChar('https://drive.google.com/file/d/14gE6Yq7ZtjJtXLqnNCRHcbCMWs0C7S5p/view?usp=drive_link'), nil, nil, SW_SHOWNORMAL);
+  except
+       showMessage('No se ha encontrado la App');
+  end;
+end;
+
+procedure TFormaPrincipal.BitBtn5Click(Sender: TObject);
+begin
+try
+      shellExecute(Handle, nil, pChar('https://github.com/GermancitoDiaz/LosCariOsos'), nil, nil, SW_SHOWNORMAL);
+  except
+       showMessage('No se ha encontrado la App');
+  end;
+end;
 
 procedure TFormaPrincipal.Button1Click(Sender: TObject);
 begin

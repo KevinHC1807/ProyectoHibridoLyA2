@@ -124,7 +124,11 @@
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
         <DCCReference Include="FORMULARIOS\Forma_Principal.pas">
-            <Form>Form1</Form>
+            <Form>FormaPrincipal</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="FORMULARIOS\Forma_LCD.pas">
+            <Form>FormaLCD</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Base">
